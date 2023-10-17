@@ -4,6 +4,9 @@ import axios from 'axios'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
+import Notification from './components/Notification'
+
+import './index.css'
 
 const App = () => {
   const baseUrl = 'http://localhost:3001/persons/'
@@ -12,6 +15,8 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filterName, setFilterName] = useState('')
+  const [messageType, setMessageType] = useState('')
+  const [message, setMessage] = useState('')
 
   useEffect(() => {
     axios
@@ -20,6 +25,16 @@ const App = () => {
         setPersons(response.data)
       })
   }, [])
+
+  const loadMessage = (m, mt) => {
+    setMessage(m)
+    setMessageType(mt)
+
+    setTimeout(() => {
+      setMessage('')
+      setMessageType('')
+    }, 3000)
+  }
 
   const addEntry = (e) => {
     e.preventDefault()
@@ -40,6 +55,12 @@ const App = () => {
             setNewName('')
             setNewNumber('')
           })
+          .then(res => {
+            loadMessage(`Updated ${updatePerson.name}'s number`, 'success')
+          })
+          .catch(res => {
+            loadError(updatePerson.name)
+          })
       }
       return
     }
@@ -57,7 +78,19 @@ const App = () => {
         setNewName('')
         setNewNumber('')
       })
+      .then(res => {
+        loadMessage(`Added ${newPerson.name}`, 'success')
+      })
+      .catch(res => {
+        loadError(newPerson.name)
+      })
   }
+
+  const loadError = (name) => {
+    loadMessage(`Information of ${name} has already been removed from server`, 'error')
+    setPersons(persons.filter(person => person.name !== name))
+  }
+
 
   const handleDelete = (name, id) => {
     if (window.confirm(`Delete ${name}`)) {
@@ -65,6 +98,12 @@ const App = () => {
         .delete(`${baseUrl}${id}`)
         .then(() => {
           setPersons(persons.filter(person => person.id !== id))
+        })
+        .then(res => {
+          loadMessage(`${name} has been deleted`, 'success')
+        })
+        .catch(res => {
+          loadError(name)
         })
     }
   }
@@ -84,6 +123,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={message} messageType={messageType} />
       <Filter value={filterName} onChange={handleFilter} />
       <h2>add a new</h2>
       <PersonForm newName={newName} newNumber={newNumber} addEntry={addEntry} handleNameChange={handleNameChange} handleNumberChange={handleNumberChange} />
