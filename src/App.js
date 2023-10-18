@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
@@ -8,9 +7,9 @@ import Notification from './components/Notification'
 
 import './index.css'
 
-const App = () => {
-  const baseUrl = 'http://localhost:3001/persons/'
+import phoneService from './services/phone'
 
+const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
@@ -19,8 +18,8 @@ const App = () => {
   const [message, setMessage] = useState('')
 
   useEffect(() => {
-    axios
-      .get(baseUrl)
+    phoneService
+      .getAll()
       .then(response => {
         setPersons(response.data)
       })
@@ -48,8 +47,7 @@ const App = () => {
           "number": newNumber,
         }
 
-        axios
-          .put(`${baseUrl}${dupe.id}`, updatePerson)
+        phoneService.update(dupe.id, updatePerson)
           .then(response => {
             setPersons(persons.map(person => person.id === dupe.id ? updatePerson : person))
             setNewName('')
@@ -59,7 +57,7 @@ const App = () => {
             loadMessage(`Updated ${updatePerson.name}'s number`, 'success')
           })
           .catch(res => {
-            loadError(updatePerson.name)
+            loadError(res.response.data.error, updatePerson.name)
           })
       }
       return
@@ -71,8 +69,7 @@ const App = () => {
       'id': Math.max(...persons.map(person => person.id)) + 1
     }
 
-    axios
-      .post(baseUrl, newPerson)
+    phoneService.create(newPerson)
       .then(response => {
         setPersons(persons.concat(newPerson))
         setNewName('')
@@ -82,20 +79,19 @@ const App = () => {
         loadMessage(`Added ${newPerson.name}`, 'success')
       })
       .catch(res => {
-        loadError(newPerson.name)
+        loadError(res.response.data.error, newPerson.name)
       })
   }
 
-  const loadError = (name) => {
-    loadMessage(`Information of ${name} has already been removed from server`, 'error')
+  const loadError = (errorMessage, name) => {
+    loadMessage(errorMessage || `Information of ${name} has already been removed from server`, 'error')
     setPersons(persons.filter(person => person.name !== name))
   }
 
 
   const handleDelete = (name, id) => {
     if (window.confirm(`Delete ${name}`)) {
-      axios
-        .delete(`${baseUrl}${id}`)
+      phoneService.deletePhone(id)
         .then(() => {
           setPersons(persons.filter(person => person.id !== id))
         })
@@ -103,7 +99,7 @@ const App = () => {
           loadMessage(`${name} has been deleted`, 'success')
         })
         .catch(res => {
-          loadError(name)
+          loadError(res.response.data.error, name)
         })
     }
   }
