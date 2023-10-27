@@ -5,7 +5,7 @@ import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import Notification from './components/Notification'
 
-import './index.css'
+import './main.css'
 
 import phoneService from './services/phone'
 
@@ -116,16 +116,27 @@ const App = () => {
     setFilterName(e.target.value)
   }
 
+  const toggleAddModule = () => {
+    console.log('toggle module')
+  }
+
   return (
-    <div>
-      <h2>Phonebook</h2>
-      <Notification message={message} messageType={messageType} />
-      <Filter value={filterName} onChange={handleFilter} />
-      <h2>add a new</h2>
-      <PersonForm newName={newName} newNumber={newNumber} addEntry={addEntry} handleNameChange={handleNameChange} handleNumberChange={handleNumberChange} />
-      <h2>Numbers</h2>
-      <Persons persons={persons} filterName={filterName} handleDelete={handleDelete} />
+    <div className='container flex'>
+      <div className='view flex'>
+        <h2>Phonebook App</h2>
+        <Notification message={message} messageType={messageType} />
+        <Filter value={filterName} onChange={handleFilter} />
+
+        <h2>add a new</h2>
+        <PersonForm newName={newName} newNumber={newNumber} addEntry={addEntry} handleNameChange={handleNameChange} handleNumberChange={handleNumberChange} />
+        <h2 className='contact-header-row'>
+          Contacts
+          <button onClick={toggleAddModule}>+ Add Contact</button>
+        </h2>
+        <Persons persons={persons} filterName={filterName} handleDelete={handleDelete} />
+      </div>
     </div>
+
   )
 }
 

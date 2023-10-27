@@ -1,0 +1,91 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+.message {
+  background: lightgrey;
+  font-size: 20px;
+  padding: 10px;
+  margin: 10px 0;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+.flex {
+  display: flex;
+}
+
+.container {
+  width: 100%;
+  justify-content: center;
+}
+
+.view {
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem 0;
+  width: 50%;
+
+  border: 1px solid lightgrey;
+}
+
+.entries { 
+  width: 75%;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+
+.entry {
+  padding: 1rem;
+  border-bottom: 1px solid lightgrey;
+}
+
+.entry > button {
+  margin-left: auto;
+}
+
+.info > * { 
+  padding: 0.25rem;
+}
+
+.name {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.number {
+  color: grey;
+}
+
+.filter {
+  width: 75%;
+}
+
+.filter > input { 
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid lightgrey
+}
+
+.contact-header-row { 
+  display: flex;
+  width: 75%;
+  justify-content: space-between;
+}
+
+.contact-header-row > button {
+  background-color: #1FB1F8;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+}

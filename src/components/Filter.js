@@ -1,7 +1,7 @@
 const Filter = ({ value, onChange }) => {
   return (
-    <div>
-      filter shown with<input value={value} onChange={onChange} />
+    <div className="filter">
+      <input value={value} onChange={onChange} placeholder='<ICON> Search for Contact By Name' />
     </div>)
 }
 
