@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAddressBook } from '@fortawesome/free-solid-svg-icons'
 
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
@@ -54,6 +56,7 @@ const App = () => {
             setNewNumber('')
           })
           .then(res => {
+            toggleModal()
             loadMessage(`Updated ${updatePerson.name}'s number`, 'success')
           })
           .catch(res => {
@@ -77,6 +80,7 @@ const App = () => {
       })
       .then(res => {
         loadMessage(`Added ${newPerson.name}`, 'success')
+        toggleModal()
       })
       .catch(res => {
         loadError(res.response.data.error, newPerson.name)
@@ -116,23 +120,34 @@ const App = () => {
     setFilterName(e.target.value)
   }
 
-  const toggleAddModule = () => {
-    console.log('toggle module')
+  const toggleModal = () => {
+    document.querySelector('.add-modal').classList.toggle('active')
   }
 
   return (
     <div className='container flex'>
-      <div className='view flex'>
-        <h2>Phonebook App</h2>
-        <Notification message={message} messageType={messageType} />
-        <Filter value={filterName} onChange={handleFilter} />
+      <div className='add-modal'>
+        <div className='modal-content'>
+          <span className="close" onClick={toggleModal}>&times;</span>
+          <PersonForm newName={newName} newNumber={newNumber} addEntry={addEntry} handleNameChange={handleNameChange} handleNumberChange={handleNumberChange} toggleModal={toggleModal} />
+        </div>
+      </div>
 
-        <h2>add a new</h2>
-        <PersonForm newName={newName} newNumber={newNumber} addEntry={addEntry} handleNameChange={handleNameChange} handleNumberChange={handleNumberChange} />
+      <div className='view flex'>
+        <h1>
+          <FontAwesomeIcon icon={faAddressBook} /> &nbsp;
+          Phonebook
+        </h1>
+        <Notification message={message} messageType={messageType} />
         <h2 className='contact-header-row'>
           Contacts
-          <button onClick={toggleAddModule}>+ Add Contact</button>
+          <button onClick={toggleModal}><span>+</span></button>
         </h2>
+
+
+
+        <Filter value={filterName} onChange={handleFilter} />
+
         <Persons persons={persons} filterName={filterName} handleDelete={handleDelete} />
       </div>
     </div>

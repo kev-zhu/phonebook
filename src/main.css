@@ -8,9 +8,11 @@ button {
 }
 
 .message {
+  position: absolute; 
+  top: 5rem;
   background: lightgrey;
   font-size: 20px;
-  padding: 10px;
+  padding: 5px;
   margin: 10px 0;
   border-style: solid;
   border-radius: 5px;
@@ -30,8 +32,6 @@ button {
   flex-direction: column;
   padding: 2rem 0;
   width: 50%;
-
-  border: 1px solid lightgrey;
 }
 
 .entries { 
@@ -43,10 +43,20 @@ button {
 .entry {
   padding: 1rem;
   border-bottom: 1px solid lightgrey;
+  justify-content: center;
+  align-items: center;
 }
 
-.entry > button {
+.delete-entry {
+  color: white;
+  background-color: red;
+  outline: none;
+
+  border: none;
+  border-radius: 5px;
   margin-left: auto;
+  height: 2.5rem;
+  width: 2.5rem;
 }
 
 .info > * { 
@@ -64,20 +74,33 @@ button {
 
 .filter {
   width: 75%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  color: grey;
 }
 
 .filter > input { 
+  box-sizing: border-box;
   width: 100%;
   font-size: 1rem;
   padding: 0.5rem;
-  border-radius: 5px;
-  border: 1px solid lightgrey
+  outline: none;
+  border: none;
+}
+
+.filter > .search-icon { 
+  font-size: 0.75rem;
+  margin-left: .5rem;
 }
 
 .contact-header-row { 
   display: flex;
-  width: 75%;
+  align-items: center;
   justify-content: space-between;
+  width: 75%;
 }
 
 .contact-header-row > button {
@@ -87,5 +110,87 @@ button {
   outline: none;
   border-radius: 5px;
   font-size: 1rem;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.phone-icon { 
+  font-size: 0.75rem;
+}
+
+.phone-number::before {
+  content: " "
+}
+
+.add-modal {
+  position: fixed;
+  display: none;
+  z-index: 1;
+  background-color: rgb(0, 0, 0);
+  background-color: rgb(0, 0, 0, 0.4);
+  height: 100%;
+  width: 100%;
+}
+
+.add-modal.active { 
+  display: block;
+}
+
+.modal-content { 
+  position: relative;
+  background-color: #fefefe;
+  margin: 7rem auto;
+  padding: 20px;
+  border: 1px solid grey;
+  width: max(250px, 40%);
+}
+
+.close {
+  position: absolute;
+  color: #aaa;
+  top: 0;
+  right: 0;
+  padding-right: 0.75rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-item > * {
+  box-sizing: border-box;
+  width: 75%;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+}
+
+.form-item > button {
+  width: 100%;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: #1FB1F8;
+}
+
+
+@media only screen and (max-width: 650px) {
+  .view {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 400px) {
+  .contact-header-row > button > span:after {
+    content: ' Add Contact'
+  }
 }

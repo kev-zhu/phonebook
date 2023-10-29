@@ -11,7 +11,7 @@ const Persons = ({ persons, filterName, handleDelete }) => {
   })
 
   return (
-    <div className='entries'>
+    <div className={filteredList.length > 0 ? 'entries' : ''}>
       {filteredList}
     </div>
   )
