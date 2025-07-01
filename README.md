@@ -1,70 +1,20 @@
-# Getting Started with Create React App
+# Phonebook Web App
+This phonebook web app was built as part of a Full Stack Open assignment to gain hands-on experience with the MERN stack. The application uses React on the frontend to build a responsive single-page interface with reusable components, while the backend is powered by Node.js and Express to handle routing and HTTP requests. Contact data is stored in a cloud-hosted MongoDB database, and CRUD operations are performed through RESTful API calls. During development, I configured the backend to run on a specified port and connect to the database using environment variables and asynchronous setup logic.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Lessons
+This project marked my first deep dive into full-stack development with the MERN stack. I learned how to build functional React components, manage state with hooks, and structure a frontend to communicate effectively with a backend service. On the backend, I implemented Express routes to handle CRUD operations and connected the server to MongoDB Atlas. I also gained experience configuring development environments, including setting up environment variables and managing server ports. It was also my first time working with a cloud-based database, which gave me valuable insight into persistent data storage and deployment considerations.
 
-## Available Scripts
+## Technologies
 
-In the project directory, you can run:
+- `MongoDB`
+- `Express`
+- `Node`
+- `React`
+- `CSS`
 
-### `npm start`
+## Features
+The app includes core functionality expected from a phonebook: users can add, delete, update, and search for contacts. A filter function allows users to easily narrow down entries by name. React handles the user interface and manages the app’s state dynamically as user actions update the contact list. The backend processes requests to retrieve or modify contact data, which is stored in MongoDB. This project focuses on core full-stack interaction and learning the MERN tech stack.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Preview
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![phonebook-main](https://github.com/user-attachments/assets/b8a0dcfd-4d54-40fd-9678-3abd2024c309)
